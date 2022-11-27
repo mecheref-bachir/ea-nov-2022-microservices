@@ -1,0 +1,24 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+
+        - id: DEPARTMENT-SERVICE
+          uri: lb://DEPARTMENT-SERVICE
+          predicates:
+            - Path=/departments/**
+
+
+
+
